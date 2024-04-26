@@ -1,0 +1,96 @@
+--Data Set Description 
+This data set is data about a region called Vienna, which is the capital of the Republic of Austria and its largest city.
+ It is located in the central-eastern region of the country, on the banks of the Danube River.
+This data set describes to us the guests who visited this area in early 2023 in terms of their names, the length of their stay,
+the prices they paid for their stay, in addition to the names and types of rooms, longitude and latitude,
+the number of reviews on these rooms, in addition to the name of the neighborhood and the availability of rooms during the year.
+--Information about dataset :
+**Calculate min,max,std,count,sum for every colmn 
+**Number of row is :14697
+**Number of columns: 18
+**print data type for each colmn :
+id                                float64
+name                               object
+host_id                             int64
+host_name                          object
+neighbourhood_group               float64
+neighbourhood                      object
+latitude                          float64
+longitude                         float64
+room_type                          object
+price                             float64
+minimum_nights                      int64
+number_of_reviews                   int64
+last_review                        object
+reviews_per_month                 float64
+calculated_host_listings_count      int64
+availability_365                    int64
+number_of_reviews_ltm               int64
+license                           float64
+dtype: object
+
+
+
+--Deal with Missing Values 
+**First, I must calculate the number of missing values 
+id                                    0
+name                                  0
+host_id                               0
+host_name                             2
+neighbourhood_group               14697
+neighbourhood                         0
+latitude                              0
+longitude                             0
+room_type                             0
+price                              2869
+minimum_nights                        0
+number_of_reviews                     0
+last_review                        2553
+reviews_per_month                  2553
+calculated_host_listings_count        0
+availability_365                      0
+number_of_reviews_ltm                 0
+license                           14697
+dtype: int64 
+--based on previous calculation i find 6 colmn which contains missing value I will deal with missing values ​​in more than one way
+--In the beginning we have two empty columns that do not contain any values, as we do not need them license  ,neighbourhood_group 
+I will delete them first -->After deleted them (still 4 colmn contains missing values )
+--After using this way( Drop missing values5% or less of total values) -->host_name colmn doesnot contains missing value (still 3 colmn contains missing values)
+--After Applay Impute by sub-group (room_type have different median price)-->price dosenot contains any missing value (still 2 colmn have missing values)
+--After applay this way (This function fills the null values ​​(NaN) in the column using the previous non-empty value. This means that if there is an empty cell in the "last_review" column, this function will fill it using the value in the previous row) on last_review colmn -->last_review dosenot contains any missing value (still one colmn contains missing value )
+---After Applay Impute by sub-group (The monthly review may be affected by several factors, including Type room)-->This means that month_review doesnot contains any missing value -->there 0 colmn contains Missing value 
+
+*****************************************we finish part related to Deal with Missing Value *********************************************
+1)First Figure is barplot -->The insights from the figure is Hotel rooms are the most expensive among other rooms,
+ but shared rooms are the least expensive.
+2)Seconed Figure is scatterplot -->The  idea from figure : the more the number of reviews per month increases,
+ the more the total number of reviews increases.
+3)Third Figure is  barplot --> Private rooms are the least available during the year .
+4)Fourth Figure is barplot -->There are 1 neighbourhood, It is one of the neighborhoods with the lowest availability rate during the year
+ 'Josefstadt'
+After representing the previous four forms, we can come up with a decision as follows:
+I suggest creating a number of private rooms (because they are more expensive than others, such as shared rooms, 
+for example, but they are less available) in the  neighborhoods('Josefstadt') that contain the least Number of  rooms.
+
+--5)fifth figure is barplot -->How are the numbers of reviews distributed across different neighborhoods? 
+Are there neighborhoods that attract more reviews? 
+In this graph, the number of reviews will be displayed on the vertical axis and neighborhood names on the horizontal axis.
+We notice from the drawing that the number of shelves varies depending on the neighborhood,
+ as there are neighborhoods that have large numbers of shelves compared to others.
+ This is evidence that the shelf is affected by the name of the neighborhood.
+--6)الشكل الناتج هو "مخطط الانحدار الخطي" (Linear Regression Plot)
+We notice from the previous figure that the relationship between the number of reviews and prices is 
+an inverse relationship. The lower the price, the greater the number of reviews, 
+because it will increase the number of people visiting the place. 
+Therefore, I suggest making discounts on prices on some occasions and seasons to increase the number 
+of reviews and increase 
+the number of people visiting the place (a type of marketing the place) 
+
+---7)هذا الرسم البياني يُعرف عمومًا باسم "رسم الانحدار الخطي المتعدد" (Multiple Linear Regression Plot )
+We notice from the figure that prices rise very high at a certain location (certain latitude and longitude lines).
+latitude(48.200)to (48.225)
+longitude(16.35)to(16.40)
+Therefore, these are the appropriate areas for investment and construction of residential units,
+ so anyone who wants to invest his money in this area must invest in these points specifically.
+
+
